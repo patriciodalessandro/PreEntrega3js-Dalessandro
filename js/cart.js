@@ -4,11 +4,14 @@ let cart = JSON.parse(localStorage.getItem("cart-products"));
 // LLAMADOS AL DOM 
 const cartProducts = document.querySelector("#cart-products");
 const cartEmptyAlert =document.querySelector("#cart-empty");
-const cartActions = document.querySelector("#cart-actions"); //VER
+const cartActions = document.querySelector("#cart-actions");
 const cartEnd = document.querySelector("#cart-end");
 const deleteButtons = document.querySelectorAll(".cart-product-delete");
+const emptyCartButton  = document.querySelector("#cart-actions-empty");
+const buyButton = document.querySelector("#cart-actions-buy")
+const priceTotal = document.querySelector("#total-price");
 
-
+ 
 
 function deployCart(){
 
@@ -59,6 +62,7 @@ function deployCart(){
         cartEnd.classList.add("disabled")
     }
     activateDeleteButtons()
+    getTotalPrice()
 }
 
 
@@ -70,6 +74,8 @@ function activateDeleteButtons() {
     });
 }
 
+
+
 function deleteFromCart(event){
     const buttonId = event.currentTarget.id;
     const targetProductIndex = cart.findIndex(producto => producto.id === buttonId);
@@ -78,4 +84,34 @@ function deleteFromCart(event){
     localStorage.setItem("cart-products",JSON.stringify(cart))
 }
 
+emptyCartButton.addEventListener("click", emptyCartAction);
+
+function emptyCartAction(){
+    cart.length = 0;
+    localStorage.setItem("cart-products", JSON.stringify(cart));
+    deployCart();
+}
+
+
+buyButton.addEventListener("click", buyCart)
+
+
+function buyCart() {
+    cart.length = 0;
+    localStorage.setItem("cart-products", JSON.stringify(cart));
+    cartEmptyAlert.classList.add("disabled");
+    cartProducts.classList.add("disabled");
+    cartActions.classList.add("disabled")
+    cartEnd.classList.remove("disabled")
+}
+
+
+
+function getTotalPrice() {
+    const getTotal = cart.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
+    priceTotal.innerText = `$${getTotal}`;
+}
+
+
 deployCart();
+

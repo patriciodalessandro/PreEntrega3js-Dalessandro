@@ -8,6 +8,7 @@
     font-family: "Montserrat", sans-serif;
 }
 
+
 ul {
     list-style-type: none;
 }
@@ -34,6 +35,28 @@ a {
 }
 
 
+/* -------- MAIN -------- */
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px; /* Ajusta según tu diseño */
+}
+
+
+
+#main-title {
+    font-size: 28px;
+    color: var(--main-title); 
+    text-align: center;
+    margin: 40px
+}
+
 /* -------- HEADER -------- */
 header {
     position: sticky;
@@ -48,7 +71,7 @@ header {
 }
 
 header .navbar-brand {
-    margin-right: 50px; /* Separación del logo */
+    margin-right: 50px; 
 }
 
 header .navbar-brand .logo {
@@ -195,14 +218,7 @@ nav button:hover {
 }
 
 
-/* -------- MAIN -------- */
 
-#main-title {
-    font-size: 28px;
-    color: var(--main-title); 
-    text-align: center;
-    margin: 40px
-}
 
 /* -------- PRODUCTOS -------- */
 .product-container {
@@ -362,6 +378,7 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: 50px;
+    height: 100px; 
 }
 
 .cr-footer {
@@ -369,7 +386,7 @@ footer {
 }
 
 
-/* --------- DISABLED ----------*/
+/* --------- CLASE PARA DESHABILITAR CONTENIDO ----------*/
 
 .disabled {
     display: none;
