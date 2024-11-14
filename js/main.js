@@ -1,3 +1,5 @@
+console.log("hay errores")
+
 // PRODUCTOS
 const productos = [
     // REMERAS Y CAMISAS
@@ -299,3 +301,4 @@ function updateCartNumber() {
     let totalItems = cart.reduce((acc, product) => acc + product.cantidad, 0);
     cartNumber.innerText = totalItems;
 }
+
