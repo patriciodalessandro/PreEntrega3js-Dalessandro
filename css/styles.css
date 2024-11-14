@@ -269,6 +269,7 @@ nav button:hover {
 .cart-empty,
  .cart-end {
     color: var(--main-color); 
+    text-align: center;
 }
 
 .cart-products {

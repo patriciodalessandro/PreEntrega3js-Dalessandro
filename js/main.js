@@ -1,5 +1,3 @@
-console.log("hay errores")
-
 // PRODUCTOS
 const productos = [
     // REMERAS Y CAMISAS
@@ -273,7 +271,14 @@ function agregarBotonesComprar() {
 }
 
 
-let cart = [];
+// ARRAY DEL CARRITO Y ACTUALIZACIÓN DE LOCAL STORAGE
+
+let cart = localStorage.getItem("cart-products") ? JSON.parse(localStorage.getItem("cart-products")) : [];
+if (cart.length) {
+    updateCartNumber();
+}
+
+
 
 //esta función va a buscar el id en el producto clickeado y lo va a comparar con el id del array productos 
 //buscando en PRODUCTOS el que coincida con ese ID lo agrega en la constante que se usará para pushearlos al carrito
@@ -293,10 +298,13 @@ function addToCart(event){
     }
     updateCartNumber()
     localStorage.setItem("cart-products", JSON.stringify(cart));
+    
 
 }
 
-// ESTA FUNCIÓN FUE CREADA PARA CAMBIAR EL NUMERO DEL CARRITO
+// FUNCIÓN PARA ACTUALIZACIÓN DEL NÚMERO DEL CARRITO Y DEL MISMO EN EL LOCAL STORAGE
+
+
 function updateCartNumber() {
     let totalItems = cart.reduce((acc, product) => acc + product.cantidad, 0);
     cartNumber.innerText = totalItems;
