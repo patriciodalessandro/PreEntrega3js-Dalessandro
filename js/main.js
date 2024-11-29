@@ -303,8 +303,6 @@ function addToCart(event){
 }
 
 // FUNCIÓN PARA ACTUALIZACIÓN DEL NÚMERO DEL CARRITO Y DEL MISMO EN EL LOCAL STORAGE
-
-
 function updateCartNumber() {
     let totalItems = cart.reduce((acc, product) => acc + product.cantidad, 0);
     cartNumber.innerText = totalItems;
