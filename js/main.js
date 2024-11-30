@@ -1,209 +1,13 @@
-// PRODUCTOS
-const productos = [
-    // REMERAS Y CAMISAS
-    {
-        id: "remera-01",
-        titulo: "Remera Rayada",
-        imagen: "./img/remeras_y_camisas/remera_rayada.png",
-        categoria: {
-            nombre: "REMERAS",
-            id: "remeras"
-        },
-        precio: 10000,
-        cantidad: 1
-    },
-    {
-        id: "remera-02",
-        titulo: "Remera Gris",
-        imagen: "./img/remeras_y_camisas/remera_gris.png",
-        categoria: {
-            nombre: "REMERAS Y CAMISAS",
-            id: "remeras"
-        },
-        precio: 8000,
-        cantidad: 1
-    },
-    {
-        id: "remera-03",
-        titulo: "Remera Looney Tunes",
-        imagen: "./img/remeras_y_camisas/oversize_looney_tunes.png",
-        categoria: {
-            nombre: "REMERAS Y CAMISAS",
-            id: "remeras"
-        },
-        precio: 12000,
-        cantidad: 1
-    },
-    {
-        id: "remera-04",
-        titulo: "Musculosa acanalada",
-        imagen: "./img/remeras_y_camisas/musculosa_acanalada.png",
-        categoria: {
-            nombre: "REMERAS Y CAMISAS",
-            id: "remeras"
-        },
-        precio: 6000,
-        cantidad: 1
-    },
-    {
-        id: "remera-05",
-        titulo: "Camisa Rosa",
-        imagen: "./img/remeras_y_camisas/camisa_rosa.png",
-        categoria: {
-            nombre: "REMERAS Y CAMISAS",
-            id: "remeras"
-        },
-        precio: 42000,
-        cantidad: 1
-    },
-    {
-        id: "remera-06",
-        titulo: "Camisa Rayada",
-        imagen: "./img/remeras_y_camisas/camisa_rayada.png",
-        categoria: {
-            nombre: "REMERAS Y CAMISAS",
-            id: "remeras"
-        },
-        precio: 46000,
-        cantidad: 1
-    },
-    {
-        id: "remera-07",
-        titulo: "Camisa Jean",
-        imagen: "./img/remeras_y_camisas/camisa_jean.png",
-        categoria: {
-            nombre: "REMERAS Y CAMISAS",
-            id: "remeras"
-        },
-        precio: 52000,
-        cantidad: 1
-    },
-    {
-        id: "remera-08",
-        titulo: "Camisa Encaje",
-        imagen: "./img/remeras_y_camisas/camisa_encaje.png",
-        categoria: {
-            nombre: "REMERAS Y CAMISAS",
-            id: "remeras"
-        },
-        precio: 36000,
-        cantidad: 1
-    },
+//MOSTRAR PRODUCTOS DEL STOCK DEL ARCHIVO PRODUCTS.JSON
 
-    // CAMPERAS
-    {
-        id: "campera-01",
-        titulo: "Campera Bomber",
-        imagen: "./img/camperas/campera_bomber.png",
-        categoria: {
-            nombre: "CAMPERAS",
-            id: "camperas"
-        },
-        precio: 62000,
-        cantidad: 1
-    },
-    {
-        id: "campera-02",
-        titulo: "Campera de cuero",
-        imagen: "./img/camperas/campera_de_cuero.png",
-        categoria: {
-            nombre: "CAMPERAS",
-            id: "camperas"
-        },
-        precio: 75000,
-        cantidad: 1
-    },
-    {
-        id: "campera-03",
-        titulo: "Campera jean",
-        imagen: "./img/camperas/campera_jean.png",
-        categoria: {
-            nombre: "CAMPERAS",
-            id: "camperas"
-        },
-        precio: 60000,
-        cantidad: 1
-    },
-    {
-        id: "campera-04",
-        titulo: "Canguro negro",
-        imagen: "./img/camperas/canguro_negro.png",
-        categoria: {
-            nombre: "CAMPERAS",
-            id: "camperas"
-        },
-        precio: 45000,
-        cantidad: 1
-    },
-    {
-        id: "campera-05",
-        titulo: "Trench beige",
-        imagen: "./img/camperas/trench_beige.png",
-        categoria: {
-            nombre: "CAMPERAS",
-            id: "camperas"
-        },
-        precio: 72000,
-        cantidad: 1
-    },
+let productos = [];
 
-    // PANTALONES
-    {
-        id: "pantalon-01",
-        titulo: "Pantalón cargo claro",
-        imagen: "./img/pantalones/cargo_claro.png",
-        categoria: {
-            nombre: "PANTALONES",
-            id: "pantalones"
-        },
-        precio: 59000,
-        cantidad: 1        
-    },
-    {
-        id: "pantalon-02",
-        titulo: "Joggin negro",
-        imagen: "./img/pantalones/joggin_negro.png",
-        categoria: {
-            nombre: "PANTALONES",
-            id: "pantalones"
-        },
-        precio: 42000,
-        cantidad: 1
-    },
-    {
-        id: "pantalon-03",
-        titulo: "Pantalón engomado",
-        imagen: "./img/pantalones/pantalon_engomado.png",
-        categoria: {
-            nombre: "PANTALONES",
-            id: "pantalones"
-        },
-        precio: 50000,
-        cantidad: 1
-    },
-    {
-        id: "pantalon-04",
-        titulo: "Pantalón de jean clásico",
-        imagen: "./img/pantalones/pantalon_jean.png",
-        categoria: {
-            nombre: "PANTALONES",
-            id: "pantalones"
-        },
-        precio: 55000,
-        cantidad: 1
-    },
-    {
-        id: "pantalon-05",
-        titulo: "Pantalón de sarga",
-        imagen: "./img/pantalones/pantalon_sarga.png",
-        categoria: {
-            nombre: "PANTALONES",
-            id: "pantalones"
-        },
-        precio: 51900,
-        cantidad: 1
-    }
-];
+fetch("./js/products.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data
+        mostrarProductos(productos);  // TODOS LOS PRODUCTOS CARGADOS INICIALMENTE //
+    });
 
 
 
@@ -239,7 +43,6 @@ function mostrarProductos(productosElegidos) {
 }
 
 
-mostrarProductos(productos);  // TODOS LOS PRODUCTOS CARGADOS INICIALMENTE //
 
 
 //Evento en todos los botones de categoria para que si se clickea, se filtren los productos y se cambie el nombre del titulo principal.
@@ -299,6 +102,26 @@ function addToCart(event){
     updateCartNumber()
     localStorage.setItem("cart-products", JSON.stringify(cart));
     
+    Toastify({
+        text: "PRODUCTO AGREGADO",
+        duration: 500,
+        destination: "./cart.html",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #555, #e5533d)",
+          borderRadius: "8px",
+          fontSize: "12px"
+        },
+        offset: {
+            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: 100 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
 
 }
 

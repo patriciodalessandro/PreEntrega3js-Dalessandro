@@ -67,6 +67,26 @@ function activateDeleteButtons() {
 
 // FUNCIÓN PARA ELIMINAR UN PRODUCTO ESPECÍFICO DEL CARRITO CUANDO SE HACE CLICK EN SU BOTÓN DE ELIMINACIÓN
 function deleteFromCart(event) {
+    Toastify({
+        text: "PRODUCTO ELIMINADO",
+        duration: 500,
+        destination: "./cart.html",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #555, #e5533d)",
+          borderRadius: "8px",
+          fontSize: "12px"
+        },
+        offset: {
+            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: 100 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
     const buttonId = event.currentTarget.id;
     const targetProductIndex = cart.findIndex(producto => producto.id === buttonId);
     if (targetProductIndex !== -1) {
@@ -79,12 +99,16 @@ function deleteFromCart(event) {
 // EVENTO CLICK SOBRE EL BOTÓN VACIAR CARRITO QUE EJECUTA LA FUNCIÓN PARA VACIAR EL CARRITO
 emptyCartButton.addEventListener("click", emptyCartAction);
 
-//FUNCION PARA VACIAR EL CARRITO
+//FUNCION PARA VACIAR EL CARRITO 
 function emptyCartAction() {
+    
     cart.length = 0;
     localStorage.setItem("cart-products", JSON.stringify(cart));
     deployCart();
 }
+
+
+
 
 // EVENTO CLICK SOBRE EL BOTÓN FINALIZAR COMPRA
 buyButton.addEventListener("click", buyCart);
