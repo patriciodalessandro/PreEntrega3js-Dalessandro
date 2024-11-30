@@ -26,11 +26,12 @@ a {
     --main-background: #212529; 
     --hover-color: #e5533d; 
     --link-color: #fff; 
-    --cart-icon-color: #fff;
     --cart-icon-size: 30px; 
     --nav-link-hover-bg: rgba(255, 255, 255, 0.1); 
     --product-item-color: #f7f7f7;
-    --product-price-color: #bd184f;;
+    --product-price-color: #bd184f;
+    --confirm-button-color: rgb(4, 95, 4);
+    --confirm-button-hover: rgb(34, 155, 34);
 }
 
 
@@ -383,6 +384,56 @@ footer {
 .cr-footer {
     font-size: 14px;
 }
+
+
+/* --------- SWEET ALERT STYLES --------- */
+
+/* EMERGENTE FINALIZAR COMPRA */
+.custom-confirm-confirm-button {
+    background-color: var(--confirm-button-color); 
+    color: var(--link-color); 
+    border: none; 
+  }
+  
+ .custom-confirm-confirm-button:hover {
+    background-color: var(--confirm-button-hover);
+ }
+
+.swal2-icon {
+    border: none !important; 
+    background-color: transparent !important; 
+  }
+
+/* EMERGENTES VACIAR EL CARRITO */
+.custom-confirm-button {
+    background-color: var(--product-price-color); 
+    color: var(--link-color); 
+    border-radius: 8px; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.custom-confirm-button:hover {
+    background-color: #9b1340; 
+}
+
+.custom-cancel-button {
+    background-color: var(--confirm-button-color); 
+    color: var(--link-color);
+    border-radius: 8px; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    margin-right: 10px;
+}
+
+.custom-cancel-button:hover {
+    background-color: var(--confirm-button-hover); 
+}
+
+
 
 
 /* --------- CLASE PARA DESHABILITAR CONTENIDO ----------*/

@@ -16,13 +16,13 @@ function deployCart() {
         cartEmptyAlert.classList.remove("disabled");
         cartProducts.classList.add("disabled");
         cartActions.classList.add("disabled");
-        cartEnd.classList.add("disabled");
+        // cartEnd.classList.add("disabled");
         return; }
     
     cartEmptyAlert.classList.add("disabled");
     cartProducts.classList.remove("disabled");
     cartActions.classList.remove("disabled");
-    cartEnd.classList.add("disabled");
+    // cartEnd.classList.add("disabled");
 
     cartProducts.innerHTML = "";    
 
@@ -96,15 +96,61 @@ function deleteFromCart(event) {
     deployCart();
 }
 
-// EVENTO CLICK SOBRE EL BOTÓN VACIAR CARRITO QUE EJECUTA LA FUNCIÓN PARA VACIAR EL CARRITO
-emptyCartButton.addEventListener("click", emptyCartAction);
+// EVENTO CLICK SOBRE EL BOTÓN VACIAR CARRITO
+emptyCartButton.addEventListener("click", emptyCart);
 
-//FUNCION PARA VACIAR EL CARRITO 
-function emptyCartAction() {
-    
+//FUNCION PARA VACIAR EL CARRITO
+function deleteProducts() {
     cart.length = 0;
     localStorage.setItem("cart-products", JSON.stringify(cart));
     deployCart();
+    getTotalPrice();
+}
+
+//FUNCIÓN PARA MOSTRAR LOS ALERTAS DEL BOTÓN VACIAR CARRITO
+function emptyCart() {
+    if (cart.length >= 1) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "custom-confirm-button",  // Clase personalizada para el botón "Sí, vaciar carrito"
+                cancelButton: "custom-cancel-button"    // Clase personalizada para el botón "Quiero mis productos"
+            },
+            buttonsStyling: false // No usar los estilos de Bootstrap
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: "¿Estás seguro?",
+            text: "¡Vas a eliminar todos los productos!",
+            icon: "warning",
+            iconHtml: '<i class="bi bi-exclamation-square" style="font-size: 4.5rem; color: #0f1820;"></i>',
+            showCancelButton: true,
+            confirmButtonText: "Sí, vaciar carrito",
+            cancelButtonText: "Quiero mis productos",
+            reverseButtons: true 
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire({
+                    title: "¡Carrito borrado!",
+                    text: "Carrito eliminado",
+                    icon: "success",
+                    iconHtml: '<i class="bi bi-trash3-fill" style="font-size: 4.5rem; color: #0f1820;"></i>'
+                });
+
+                deleteProducts();
+            } else {
+                // Aquí aplicamos estilos para la ventana "Carrito salvado"
+                swalWithBootstrapButtons.fire({
+                    title: "¡Carrito salvado!",
+                    text: "Perfecto, puedes continuar con tu compra",
+                    icon: "error",
+                    iconHtml: `<i class="bi bi-hand-thumbs-up" style="font-size: 4.5rem; color: #0f1820;"></i>`,
+                    customClass: {
+                        confirmButton: "custom-cancel-button" // Aseguramos que este tenga el color verde
+                    }
+                });
+            }
+        });
+    }
 }
 
 
@@ -115,12 +161,27 @@ buyButton.addEventListener("click", buyCart);
 
 // FUNCIÓN PARA VACIAR EL CARRITO UNA VEZ QUE SE FINALIZA LA COMPRA
 function buyCart() {
-    cart.length = 0;
-    localStorage.setItem("cart-products", JSON.stringify(cart));
-    cartEmptyAlert.classList.add("disabled");
-    cartProducts.classList.add("disabled");
-    cartActions.classList.add("disabled");
-    cartEnd.classList.remove("disabled");
+    if (cart.length >= 1) {
+        Swal.fire({
+            title: "¡Compra realizada con éxito!",
+            text: "Gracias por confiar en Lutto",
+            icon: "",
+            iconHtml: `<i class="bi bi-emoji-laughing" style="font-size: 4.5rem; color: #0f1820;"></i>`,
+            confirmButtonText: "Aceptar",
+            customClass: {
+              confirmButton: "custom-confirm-confirm-button"
+            }
+          });
+          
+    }
+        deleteProducts();
+        getTotalPrice();
+    // cart.length = 0;
+    // localStorage.setItem("cart-products", JSON.stringify(cart));
+    // cartEmptyAlert.classList.add("disabled");
+    // cartProducts.classList.add("disabled");
+    // cartActions.classList.add("disabled");
+    // cartEnd.classList.remove("disabled");
 }
 
 // FUNCIÓN PARA CALCULAR Y MOSTRAR EL PRECIO TOTAL DE LOS PRODUCTOS DENTRO DEL CARRITO
